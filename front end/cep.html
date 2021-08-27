@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minha página em HTML</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <form id="contactform" class="rounded" method="post">
+        <h2 id="h2">Formulário para cadastro</h2>
+        <div class="field">
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" class="input" name="usuario_cpf" />
+        </div>
+        <div class="field">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" class="input" name="usuario_nome" />
+        </div>
+        <div class="field">
+            <label for="data_nasc">Data Nasc.:</label>
+            <input type="text" id="data_nasc" class="input" name="usuario_data_nasc" />
+        </div>
+        <div class="field">
+            <label for="email">Email:</label>
+            <input type="text" id="email" class="input" name="usuario_email" />
+        </div>
+        <div class="field">
+            <label for="profissao">Profissão:</label>
+            <input type="text" id="profissao" class="input" name="usuario_profissao" />
+        </div>
+        <div class="field">
+            <label for="celular">Celular:</label>
+            <input type="text" id="celular" class="input" name="usuario_celular" />
+        </div>
+        <div class="field">
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" class="input" name="usuario_cep" />
+        </div>
+        <input class="button" onclick="getCep();" value="Buscar CEP" />
+        <br/>
+        <br/>
+        <br/>
+        <div class="field">
+            <label for="logradouro">Logradouro:</label>
+            <input type="text" id="logradouro" class="input" name="usuario_logradouro" />
+        </div>
+        <div class="field">
+            <label for="complemento">Complemento:</label>
+            <input type="text" id="complemento" class="input" name="usuario_complemento" />
+        </div>
+        <div class="field">
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" class="input" name="usuario_bairro" />
+        </div>
+        <div class="field">
+            <label for="localidade">Localidade:</label>
+            <input type="text" id="localidade" class="input" name="usuario_localidade" />
+        </div>
+        <div class="field">
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" class="input" name="usuario_estado" />
+        </div>
+        <input type="submit" class="button" onclick="Enviar();" value="Enviar" />
+        <p id="error"></p>
+    </form>
+</body>
+    <script>
+        function getCep() {
+            var num_cep = document.getElementById("cep").value;
+            var url = "https://viacep.com.br/ws/" + num_cep + "/json/";
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", url, false);
+            document.getElementById("error").innerHTML = "";
+            try {
+                xhttp.send();
+            } catch (e) {
+                document.getElementById("error").innerHTML = "CEP com Erro";
+            }
+            var json_cep = JSON.parse(xhttp.responseText);
+            document.getElementById("logradouro").value = json_cep.logradouro;
+            document.getElementById("complemento").value = json_cep.complemento;
+            document.getElementById("bairro").value = json_cep.bairro;
+            document.getElementById("localidade").value = json_cep.localidade;
+            document.getElementById("estado").value = json_cep.uf;
+        }
+        function Enviar() {
+            var url = "https://viacep.com.br/ws/" + num_cep + "/json/";
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", url, false);
+            xhttp.send();
+            alert('Obrigado sr(a) os seus dados foram encaminhados com sucesso');
+        }
+
+    </script>
+</html>
+

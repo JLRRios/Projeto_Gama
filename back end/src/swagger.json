@@ -1,0 +1,94 @@
+{
+  "openapi": "3.0.0",
+
+  "info": {
+    "title": "API do Projeto Gama",
+    "description": "API do projeto de bancos de currículos",
+    "version": "0.0.1"
+  },
+
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "ambiente de desenvolvimento"
+    }
+  ],
+
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Cadastro de candidato",
+        "description": "Rota de cadastro de usuário, recebe: CPF, Nome, Data Nascimento, Cep, Logradouro, Número, Bairro, Cidade, Email, Profissão e Celular",
+        "tags": ["candidato"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "cpf": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "data_nasc": {
+                    "type": "string"
+                  },
+                  "profissao": {
+                    "type": "string"
+                  },
+                  "celular": {
+                    "type": "number"
+                  },
+                  "cep": {
+                    "type": "string"
+                  },
+                  "logradouro": {
+                    "type": "string"
+                  },
+                  "numero": {
+                    "type": "number"
+                  },
+                  "bairro": {
+                    "type": "string"
+                  },
+                  "cidade": {
+                    "type": "string"
+                  },
+                  "estado": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Teste": {
+                  "value": {               
+                    "cpf": "1111111111111",
+                    "name": "Fulano da Silva",
+                    "email": "fulano@cicrano.com",
+                    "gender": "Masculino Cis",
+                    "data_nasc": "01/01/2021",
+                    "profissao": "autônomo",
+                    "celular": "9999999999",
+                    "cep": "00000-000",
+                    "logradouro": "Rua dos Bobos",
+                    "numero": "0",
+                    "bairro": "lugar nenhum",
+                    "cidade": "Terra do Nunca",
+                    "estado": "Tão Tão Distante"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
